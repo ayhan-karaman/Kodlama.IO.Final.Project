@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -9,35 +10,42 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ProductTest();
-            //CategoryTest();
-
-        }
-
-
-        // Static Metotlar
-
-
-        private static void CategoryTest()
-        {
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-
-            Console.WriteLine(categoryManager.GetId(1).CategoryName);
-
-            foreach (var category in categoryManager.GetById(1))
-            {
-                Console.WriteLine(category.CategoryName +" / " + category.CategoryId);
-            }
-        }
-
-        private static void ProductTest()
-        {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetProductDetails())
+            //GetAllCategoryIdTest(productManager);
+
+
+
+
+
+            //productManager.Add(new Product { ProductName = "Tiryaki Çay", UnitPrice= 34550, CategoryId = 3, UnitsInStock = 45});
+
+          
+
+            GetAllTest(productManager);
+
+        }
+
+        private static void GetAllTest(ProductManager productManager)
+        {
+            foreach (var product in productManager.GetAll().Data)
             {
-                Console.WriteLine(product.ProductName + " / " + product.CategoryName);
+                Console.WriteLine($"{product.ProductName} - {product.UnitPrice}");
             }
         }
+
+        private static void GetAllCategoryIdTest(ProductManager productManager)
+        {
+            foreach (var product in productManager.GetAllCategoryId(2).Data)
+            {
+                Console.WriteLine(product.ProductName);
+            }
+        }
+
+
+
+
+
+
     }
 }
