@@ -36,7 +36,7 @@ namespace Business.Concrete
             else
             {
                 _productDal.Add(product);
-                return new SuccessResult(Messages.ProductDelete);
+                return new SuccessResult(Messages.ProductAdded);
             }
             
 
@@ -44,8 +44,15 @@ namespace Business.Concrete
 
         public IDataResult <List<Product>> GetAll()
         {
+
+            //if (DateTime.Now.Hour == 23)
+            //{
+            //    return new ErrorDataResult<List<Product>>(Messages.ProductNotList);
+            //}
            
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductList);
+                return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductList);
+            
+            
         }
 
         public IDataResult<List<Product>> GetAllCategoryId(int id)
@@ -66,7 +73,7 @@ namespace Business.Concrete
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult <Product> (_productDal.Get(p => p.ProductId == productId));
+            return new SuccessDataResult <Product>(_productDal.Get(p => p.ProductId == productId), Messages.ProductList);
         }
     }
 }

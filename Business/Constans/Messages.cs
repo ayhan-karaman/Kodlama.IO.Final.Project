@@ -10,5 +10,6 @@ namespace Business.Constans
         public static string ProcuctNameInvalid = "Ürün İsmis Geçersizdir";
         public static string ProductDelete = "Ürün Başarıyla Silindi";
         public static string ProductList = "Ürünler Başarıyla Listeledi";
+        public static string ProductNotList = "Sistem Bakımda Olduğu için Listelenmedi";
     }
 }
