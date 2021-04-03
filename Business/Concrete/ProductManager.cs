@@ -31,7 +31,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductDelete);
 
         }
-        [SecuredOperation("superuser,admin")]
+       // [SecuredOperation("superuser,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
